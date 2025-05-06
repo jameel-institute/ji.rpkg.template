@@ -33,7 +33,9 @@ Replace all instances of "ji.rpkg.template" with your package name. Make sure to
 
 2. Edit the files in `R/`, `tests/`, and `vignettes/` to suit your package;
 
-3. Remove these instructions from `README.Rmd`, and re-render the `.md` file using `devtools::render_readme()`.
+3. Add spell check by running usethis::use_spell_check(lang = "en-GB")
+
+4. Remove these instructions from `README.Rmd`, and re-render the `.md` file using `devtools::render_readme()`.
 
 ## Installation
 
