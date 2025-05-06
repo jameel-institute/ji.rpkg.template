@@ -31,7 +31,9 @@ Jameel Institute organisation. Replace all instances of
 2.  Edit the files in `R/`, `tests/`, and `vignettes/` to suit your
     package;
 
-3.  Remove these instructions from `README.Rmd`, and re-render the `.md`
+3.  Add spell check by running usethis::use_spell_check(lang = “en-GB”)
+
+4.  Remove these instructions from `README.Rmd`, and re-render the `.md`
     file using `devtools::render_readme()`.
 
 ## Installation
