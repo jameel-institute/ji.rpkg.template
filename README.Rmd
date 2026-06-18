@@ -37,6 +37,30 @@ Replace all instances of "ji.rpkg.template" with your package name. Make sure to
 
 4. Remove these instructions from `README.Rmd`, and re-render the `.md` file using `devtools::render_readme()`.
 
+## Development tooling included
+
+**Remove this section from your repo.**
+
+Includes the general package structure, along with testing, documentation, and CI infrastructure described in [R Packages 2e](https://r-pkgs.org/).
+
+1. Modern R formatting and linting using [air](https://posit-dev.github.io/air/formatter.html) and [jarl](https://jarl.etiennebacher.com/); much faster than _styler_ and _lintr_, but may not have some functionality (such as replacing assignment operators, or catching some lints). We still use _lintr_ in the CI workflow, so it is worth using that once in a while.
+
+2. Includes C++ formatting, linting, and static code analysis using [clang-format](https://clang.llvm.org/docs/ClangFormat.html), [cpplint](https://github.com/cpplint/cpplint), and [cppcheck](https://cppcheck.sourceforge.io/). Remember to replace the template package name with the names of files to be processed in the C++ linting shell script under `scripts/format-lnt-cpp.sh`. Or remove this script and associated command from the Makefile (see next).
+
+3. All formatting and linting workflows are nicely bundled into a Makefile. Install `make` on your system, and run `make <command>` to format-lint R, C++, or both.
+
+```sh
+# both R and C++, using fast tools for R (air, jarl)
+make format-lint
+
+# only R or C++
+make format-lint-r
+
+make format-lint-cpp
+```
+
+4. Includes LLM-associated directories in Rbuildignore.
+
 ## Installation
 
 **NOTE:** Remove or comment out installation sources as appropriate.
