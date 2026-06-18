@@ -6,9 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Your Package Title in Title Case • ji.rpkg.template</title>
-<script src="lightswitch.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Inter-0.4.10/font.css" rel="stylesheet">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="lightswitch.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/Inter-0.4.10/font.css" rel="stylesheet">
 <link href="deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -70,11 +76,32 @@
 <li><p>Remove these instructions from <code>README.Rmd</code>, and re-render the <code>.md</code> file using <code>devtools::render_readme()</code>.</p></li>
 </ol>
 <div class="section level2">
+<h2 id="development-tooling-included">Development tooling included<a class="anchor" aria-label="anchor" href="#development-tooling-included"></a>
+</h2>
+<p><strong>Remove this section from your repo.</strong></p>
+<p>Includes the general package structure, along with testing, documentation, and CI infrastructure described in <a href="https://r-pkgs.org/" class="external-link">R Packages 2e</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Modern R formatting and linting using <a href="https://posit-dev.github.io/air/formatter.html" class="external-link">air</a> and <a href="https://jarl.etiennebacher.com/" class="external-link">jarl</a>; much faster than <em>styler</em> and <em>lintr</em>, but may not have some functionality (such as replacing assignment operators, or catching some lints). We still use <em>lintr</em> in the CI workflow, so it is worth using that once in a while.</p></li>
+<li><p>Includes C++ formatting, linting, and static code analysis using <a href="https://clang.llvm.org/docs/ClangFormat.html" class="external-link">clang-format</a>, <a href="https://github.com/cpplint/cpplint" class="external-link">cpplint</a>, and <a href="https://cppcheck.sourceforge.io/" class="external-link">cppcheck</a>. Remember to replace the template package name with the names of files to be processed in the C++ linting shell script under <code>scripts/format-lnt-cpp.sh</code>. Or remove this script and associated command from the Makefile (see next).</p></li>
+<li><p>All formatting and linting workflows are nicely bundled into a Makefile. Install <code>make</code> on your system, and run <code>make &lt;command&gt;</code> to format-lint R, C++, or both.</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># both R and C++, using fast tools for R (air, jarl)</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">make</span> format-lint</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># only R or C++</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> format-lint-r</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> format-lint-cpp</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Includes LLM-associated directories in Rbuildignore.</li>
+</ol>
+</div>
+<div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p><strong>NOTE:</strong> Remove or comment out installation sources as appropriate.</p>
 <p>You can install the development version of ji.rpkg.template from the Jameel Institute R-universe with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># installation from R-universe</span></span>
 <span><span class="co"># install.packages(</span></span>
 <span><span class="co">#   "ji.rpkg.template", </span></span>
@@ -83,7 +110,7 @@
 <span><span class="co">#   )</span></span>
 <span><span class="co"># )</span></span></code></pre></div>
 <p>or from GitHub <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="co"># pak::pak("jameel-institute/ji.rpkg.template")</span></span></code></pre></div>
 </div>
@@ -147,7 +174,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
